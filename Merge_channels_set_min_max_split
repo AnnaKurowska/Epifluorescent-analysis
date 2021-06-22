@@ -1,3 +1,8 @@
+## Macro used for images with 4 channels; DAPI, Cy3, Cy5 and GFP (but other channels can be used instead). The macro runs through all folders holding 4 separate channel images each from the main folder.
+ # Then the macro adjusts the min and max brightness values of each of the 4 channels, crops each picture into a smaller rectangle and saves it into the same of fodler.
+ # mix and max values, as well as the rectangle position and size for each channel must be set manually.
+
+
 folder_of_interest = getDir("Choose a Directory")
 
 Dapi = "img_000000000_Dapi_000.tif"
@@ -10,32 +15,30 @@ for (i=0; i < folders.length; i++) {
   subfolders = getFileList(folder_of_interest + folders[i]);
   for (j= 0; j <subfolders.length; j++){
   	print(folder_of_interest + folders[i] + subfolders[j]);
-  	open(folder_of_interest + folders[i] +  subfolders[j] + "Pos0/" + Cy3);
-    selectWindow(Cy3);
-    setMinAndMax(min, max);
-    open(folder_of_interest + folders[i] + subfolders[j] + "Pos0/" + Dapi);
-    selectWindow(Dapi);
-    setMinAndMax(min, max);
-    open(folder_of_interest + folders[i] + subfolders[j]  + "Pos0/" + Cy5);
+    open(folder_of_interest + folders[i] +  subfolders[j] + "Pos0/" + Cy3);
     selectWindow(Cy5);
     setMinAndMax(min, max);
-    open(folder_of_interest + folders[i] + subfolders[j] + "Pos0/" + Gfp);
+    makeRectangle(x, x, x, x, x);
+    run("Crop");
+    saveAs("tiff", folder_of_interest + folders[i] + subfolders[j] + "-C1" + ".tif");
+    close();
+    selectWindow(Cy3);
+    setMinAndMax(min, max);
+    makeRectangle(x, x, x, x, x);
+    run("Crop");
+    saveAs("tiff", folder_of_interest + folders[i] + subfolders[j] + "-C2" + ".tif");
+    close();
     selectWindow(Gfp);
     setMinAndMax(min, max);
-	run("Merge Channels...", "c1=" + Cy5 + " c2=" + Cy3 + " c3=" + Gfp + " c5=" + Dapi + " create");
-	makeRectangle(x, x, x, x, x);
-	run("Split Channels");
-	run("Duplicate...", "duplicate");
-	selectWindow("C1-Composite");
-	saveAs("Tiff", "/Volumes/LaCie 1/IF/AK/Cut_folder/" + "C1-composite" + ".tif");
-	close();
-	selectWindow("C2-Composite");
-	saveAs("Tiff", "/Volumes/LaCie 1/IF/AK/Cut_folder/" + "C2-composite" + ".tif");
-	close();
-	selectWindow("C3-Composite");
-	saveAs("Tiff", "/Volumes/LaCie 1/IF/AK/Cut_folder/" + "C3-composite" + ".tif");
-	close();
-	selectWindow("C4-Composite");
-	saveAs("Tiff", "/Volumes/LaCie 1/IF/AK/Cut_folder/" + "C4-composite" + ".tif");
-	close();	
-  }
+    makeRectangle(x, x, x, x, x);
+    run("Crop");
+    saveAs("tiff", folder_of_interest + folders[i] + subfolders[j] + "-C3" + ".tif");
+    close();
+    selectWindow(Dapi);
+    setMinAndMax(min, max);
+    makeRectangle(x, x, x, x, x);
+    run("Crop");
+    saveAs("tiff", folder_of_interest + folders[i] + subfolders[j] + "-C4" + ".tif");
+    close();
+   } 
+ }
