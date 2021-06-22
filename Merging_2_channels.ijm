@@ -1,4 +1,4 @@
-## Macro used for immages with 2 channels; Cy3 and DAPI (but other channels can be used instead). The macro runs through all folders holding 2 separate channel images each from the main folder.
+## Macro used for images with 2 channels; Cy3 and DAPI (but other channels can be used instead). The macro runs through all folders holding 2 separate channel images each from the main folder.
  # Then the macro adjusts the min and max brightness values of 2 channels and then merges 2 channels into a stack image that it saves in the folder of each image. 
  # mix and max values for each channel must be set manually
 
