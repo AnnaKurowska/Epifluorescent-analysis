@@ -15,10 +15,10 @@ for (i=0; i < folders.length; i++) {
   	print(folder_of_interest + folders[i] + subfolders[j]);
   	    open(folder_of_interest + folders[i] +  subfolders[j] + "Pos0/" + Cy3);
 	    selectWindow(Cy3);
-	    setMinAndMax(366, 2500);
+	    setMinAndMax(min, max);
 	    open(folder_of_interest + folders[i] + subfolders[j] + "Pos0/" + Dapi);
 	    selectWindow(Dapi);
-	    setMinAndMax(30, 2600);
+	    setMinAndMax(min, max);
  run("Merge Channels...", "c1=" + Cy3 + " + channel1 c3=" + Dapi + " + channel2 create");
  	length = lengthOf(subfolders[j]);
 	name = substring(subfolders[j], 0, length-1);
