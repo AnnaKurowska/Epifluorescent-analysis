@@ -1,4 +1,4 @@
-## Macro used for immages with 4 channels; DAPI, Cy3, Cy5 and GFP. The macro runs through all folders holding 4 channels images each from the main folder.
+## Macro used for immages with 4 channels; DAPI, Cy3, Cy5 and GFP. The macro runs through all folders holding 4 separate channel images each from the main folder.
  # Then the macro adjusts the min and max brightness values of 4 channels DAPI, Cy3, Cy5, GFP and then merges 4 channels into a stack image that it saves in the
  # folder of each image. 
  # mix and max values for each channel must be set manually
